@@ -1,0 +1,66 @@
+{
+  "bloodBank": [
+    {
+      "id": "A+",
+      "amount": 100
+    },
+    {
+      "id": "O+",
+      "amount": 200
+    },
+    {
+      "id": "B+",
+      "amount": 300
+    },
+    {
+      "id": "AB+",
+      "amount": 500
+    },
+    {
+      "id": "A-",
+      "amount": 100
+    },
+    {
+      "id": "O-",
+      "amount": 140
+    },
+    {
+      "id": "B-",
+      "amount": 150
+    },
+    {
+      "id": "AB-",
+      "amount": 300
+    }
+  ],
+  "donors": [
+    {
+      "id": 1,
+      "donorID": "318245040",
+      "fullName": "Mohamed AboMokh",
+      "phoneNumber": "0503385272",
+      "bloodType": "O-"
+    },
+    {
+      "id": 2,
+      "donorID": "20689877",
+      "fullName": "Loai Abed",
+      "phoneNumber": "0503386272",
+      "bloodType": "AB+"
+    },
+    {
+      "id": "3",
+      "donorID": "206898758",
+      "fullName": "Moataz Atawani",
+      "phoneNumber": "0503585272",
+      "bloodType": "AB-"
+    },
+    {
+      "donorID": "1111",
+      "fullName": "Mohamed Abomokh",
+      "phoneNumber": "78798987",
+      "bloodType": "A-",
+      "id": "YCQPY4k"
+    }
+  ]
+}
