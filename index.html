@@ -8,7 +8,7 @@
     <link rel="icon" href="assets/images/blood-drop.svg">
     <title>Blood Bank</title>
     <!-- style and scripts links -->
-    <link rel="stylesheet" href="style/homepage.css">
+
     <!-- external links -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -25,11 +25,21 @@
         }
 
         body {
-            background-image: url("../assets/images/blood-bank.jpg");
-            height: 100%;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+            background: linear-gradient(to top, #fbc2eb 0%, #a18cd1 100%);
+
+        }
+
+        h1 {
+            margin-top: 15%;
+            text-align: center;
+            font-weight: bold;
+            color: red;
+            font-family: 'Carter One', cursive;
+        }
+
+        .homepage-img {
+            display: block;
+            text-align: center !important;
         }
     </style>
 </head>
@@ -74,6 +84,15 @@
         </div>
     </nav>
     <!-- ---------------------------------------------------------------------------------------------- -->
+    <h1>
+        Blood Bank
+        <br>
+        by Mohamed,Moataz and Loai
+    </h1>
+    <div class="homepage-img">
+        <img src="assets/images/donate-blood.png" class="img-fluid" alt="Responsive image">
+    </div>
+
 </body>
 
 </html>
