@@ -38,8 +38,11 @@
 
 <body>
      <!-- ---------------------------------------------------------------------------------------------- -->
-     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="donateBlood.html">Receiving Blood</a>
+     <nav class="navbar navbar-expand-xl navbar-light " style="background-color: #ffb5fd;">
+        <a class="navbar-brand" href="../index.html">
+            <img src="../assets/images/navbar-blood-drop.svg" width="30" height="30" class="d-inline-block align-top"
+                alt="">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -47,24 +50,28 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="navbar-brand" href="BloodHosUse.html">Hospital Order</a>
+                <li class="nav-item ">
+                    <a class="nav-link" href="donateBlood.html">Donate</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="hospitalOrder.html">Order blood units</a>
                 </li>
                 <li class="nav-item">
-                    <a class="navbar-brand" href="MCI.html">Multiple Casualty Incident</a>
+                    <a class="nav-link" href="MCI.html">Multiple Casualty Incident</a>
                 </li>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        View Data
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="viewDonors.html">Donors Data</a>
-                        <a class="dropdown-item" href="viewHospitalUse.html">Hospital Order Data</a>
-                        <a class="dropdown-item" href="viewMCI.html">Multiple Casualty Incident Data</a>
-                    </div>
-                </div>
             </ul>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle " type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" style="border:1px; background-color: #ff82fc;margin-right:50px;"
+                    aria-haspopup="true" aria-expanded="false">
+                    View tables
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="viewDonors.html">Donors</a>
+                    <a class="dropdown-item" href="viewHospitalUse.html">Hospital Orders</a>
+                    <a class="dropdown-item" href="viewBloodBank.html">Blood bank</a>
+                </div>
+            </div>
         </div>
     </nav>
     <!-- ---------------------------------------------------------------------------------------------- -->

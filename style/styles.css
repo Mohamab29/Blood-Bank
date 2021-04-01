@@ -1,3 +1,11 @@
+/* ==========================================================================
+   #FONT our style
+   ========================================================================== */
+
+
+
+
+
 
 /* ==========================================================================
    #FONT
@@ -121,7 +129,7 @@
      #PAGE WRAPPER
      ========================================================================== */
   .page-wrapper {
-    min-height: 100vh;
+    padding: 171px;
   }
   
   body {
@@ -161,13 +169,6 @@
   /* ==========================================================================
      #BACKGROUND
      ========================================================================== */
-  .bg-blue {
-    background: #2c6ed5;
-  }
-  
-  .bg-red {
-    background: #fa4251;
-  }
   
   .bg-gra-01 {
     background: -webkit-gradient(linear, left bottom, left top, from(#fbc2eb), to(#a18cd1));
@@ -256,7 +257,6 @@
     transition: all 0.4s ease;
     cursor: pointer;
     font-size: 18px;
-    color: #fff;
     font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
   }
   
@@ -278,12 +278,12 @@
     border-radius: 20px;
   }
   
-  .btn--green {
-    background: #57b846;
+  .btn--pink {
+    background: #e5e5e5 !important;
   }
   
-  .btn--green:hover {
-    background: #4dae3c;
+  .btn--pink:hover {
+    background: #fbc2eb !important;
   }
   
   .btn--blue {
