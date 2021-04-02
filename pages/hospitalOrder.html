@@ -9,10 +9,15 @@
 
     <!-- Title Page-->
     <title>Hospital order form</title>
+
     <!-- local link -->
     <link href="../style/styles.css" rel="stylesheet" media="all">
     <link rel="icon" href="../assets/images/blood-drop.svg">
-    
+    <link rel="stylesheet" href="../style/success-modals.css">
+
+    <!-- local scripts -->
+    <script src="../scripts/orders-page.js"></script>
+
     <!-- Font special for pages-->
     <link
         href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
@@ -74,18 +79,18 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Hospital Use Blood Order</h2>
-                    <form>
+                    <form id="order-form">
                         <div class="row row-space">
                             <div class="col-6">
                                 <div class="input-group">
-                                    <label class="label">ID</label>
-                                    <input class="input--style-4" type="text" name="first_name">
+                                    <label class="label">Patient ID</label>
+                                    <input class="input--style-4" type="text" name="patientID">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="input-group">
                                     <label class="label">Full Name</label>
-                                    <input class="input--style-4" type="text" name="last_name">
+                                    <input class="input--style-4" type="text" name="fullName">
                                 </div>
                             </div>
                         </div>
@@ -93,15 +98,15 @@
                             <div class="col-6">
                                 <div class="input-group">
                                     <label class="label">Number of blood units</label>
-                                    <input class="input--style-4" type="text" name="phone">
+                                    <input class="input--style-4" type="text" name="numberOfBloodUnits">
                                 </div>
                             </div>
                         </div>
                         <div class="col-4 blood-type-dropdown">
                             <label class="label">Blood Type</label>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <select class="custom-select" name="subject">
-                                    <option disabled="disabled" selected="selected">Choose Blood</option>
+                                <select class="custom-select" name="bloodTypeSelect">
+                                    <option disabled="disabled" selected="selected">Choose type</option>
                                     <option>A+</option>
                                     <option>A-</option>
                                     <option>B+</option>
@@ -115,7 +120,7 @@
                         </div>
                         <br>
                         <div class="p-t-15">
-                            <button class="btn btn--pink" type="button" onclick="AddVolnteer()">Submit</button>
+                            <button class="btn btn--pink" type="button" onclick="addOrder()">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -123,17 +128,8 @@
         </div>
     </div>
 
-    <!-- Jquery JS-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <!-- Vendor JS-->
-    <script src="vendor/select2/select2.min.js"></script>
-    <script src="vendor/datepicker/moment.min.js"></script>
-    <script src="vendor/datepicker/daterangepicker.js"></script>
+</body>
 
-    <!-- Main JS-->
-    <script src="js/global.js"></script>
-
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
 </html>
 <!-- end document-->
