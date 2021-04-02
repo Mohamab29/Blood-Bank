@@ -21,6 +21,34 @@ function addTableRow(rowIndex, id, amount) {
     tr.appendChild(td02);
     return tr;
 }
+function searchTable() {
+    // this function is called when someone uses the search bar above the table
+    // we check all the table data (aka cells) , if the string that in the input match any cell 
+    // if yes then we display it
+    let td01, td02;
+    const table = document.getElementById("data-table");
+    const tr = table.getElementsByTagName("tr");
+
+    const showOrHideRow = (tr, td1, td2) => {
+        let searchInput = document.getElementById("search-input");
+        let filter = searchInput.value;
+        let txtValue1 = td1.innerText;
+        let txtValue2 = td2.innerText;
+        if (txtValue1.indexOf(filter) > -1 || txtValue2.indexOf(filter) > -1) {
+            tr.style.display = "";
+        } else {
+            tr.style.display = "none";
+        }
+    };
+
+    for (let i = 1; i < tr.length; i++) {
+        td01 = tr[i].getElementsByTagName("td")[0];
+        td02 = tr[i].getElementsByTagName("td")[1];
+        if (td01 && td02) {
+            showOrHideRow(tr[i], td01, td02);
+        }
+    }
+}
 window.onload = async () => {
     //on load we build the table dynamically by using 
     // the data the json-server 
