@@ -1,13 +1,14 @@
 .container-fluid{
     margin-top: 8%;
+    animation: fadeIn;
+    animation-duration: 2s;
+    animation-fill-mode: both;
 }
 
 
 .table{
     background-color:whitesmoke;
-    animation: fadeIn;
-    animation-duration: 2s;
-    animation-fill-mode: both;
+
     font-family: 'Caladea', serif !important;
     
 }

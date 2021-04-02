@@ -1,10 +1,12 @@
-function addTableRow(rowIndex, id, amount) {
+function addTableRow(rowIndex, patientID, fullName, numberOfBloodUnits, bloodType) {
     /*
-    How a table row will look like for the blood bank data
+    How a table row will look like for the donor data
         <tr>
             <th scope="row">rowIndex</th>
-            <td>id</td>
-            <td>amount</td>
+            <td>patientID</td>
+            <td>fullName</td>
+            <td>numberOfBloodUnits</td>
+            <td>bloodType</td>
         </tr>
     */
     const tr = document.createElement("tr");
@@ -13,12 +15,19 @@ function addTableRow(rowIndex, id, amount) {
     th.innerHTML = rowIndex;
     tr.appendChild(th);
 
-    let td01 = document.createElement("td");
-    td01.innerHTML = id;
+    const td01 = document.createElement("td");
+    td01.innerHTML = patientID;
     tr.appendChild(td01);
-    let td02 = document.createElement("td");
-    td02.innerHTML = amount;
+    const td02 = document.createElement("td");
+    td02.innerHTML = fullName;
     tr.appendChild(td02);
+    const td03 = document.createElement("td");
+    td03.innerHTML = numberOfBloodUnits;
+    tr.appendChild(td03);
+    const td04 = document.createElement("td");
+    td04.innerHTML = bloodType;
+    tr.appendChild(td04);
+
     return tr;
 }
 function searchTable() {
@@ -55,14 +64,18 @@ window.onload = async () => {
     //on load we build the table dynamically by using 
     // the data the json-server 
     const tbody = document.getElementById("table-body");
-    let uri = 'http://localhost:3000/bloodBank?_sort=amount&_order=desc';
+    let uri = 'http://localhost:3000/hospitalOrders?_sort=numberOfBloodUnits&_order=desc';
 
     const response = await fetch(uri);
-    const bloodTypesData = await response.json();
+    const donorsData = await response.json();
 
     let tableRow = {};
-    for (let i = 0; i < bloodTypesData.length; i++) {
-        tableRow = addTableRow(i + 1, bloodTypesData[i].id, bloodTypesData[i].amount);
+    for (let i = 0; i < donorsData.length; i++) {
+        tableRow = addTableRow(i + 1, 
+            donorsData[i].patientID,
+            donorsData[i].fullName,
+            donorsData[i].numberOfBloodUnits,
+            donorsData[i].bloodType);
         tbody.appendChild(tableRow);
     }
 

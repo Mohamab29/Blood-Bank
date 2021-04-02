@@ -9,10 +9,13 @@
 
     <!-- Title Page-->
     <title>Donors table</title>
-    <!-- local link -->
+    <!-- local links -->
     <link href="../style/styles.css" rel="stylesheet" media="all">
     <link rel="icon" href="../assets/images/blood-drop.svg">
+    <link rel="stylesheet" href="../style/tables.css">
 
+    <!-- local scripts -->
+    <script src="../scripts/donors-table.js"></script>
     <!-- Font special for pages-->
     <link
         href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
@@ -49,7 +52,7 @@
                 <li class="nav-item ">
                     <a class="nav-link" href="hospitalOrder.html">Order blood units</a>
                 </li>
-                <li class="nav-item" >
+                <li class="nav-item">
                     <a class="nav-link" href="MCI.html">Multiple Casualty Incident</a>
                 </li>
             </ul>
@@ -68,7 +71,30 @@
         </div>
     </nav>
     <!-- ---------------------------------------------------------------------------------------------- -->
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center">
+            <div class="d-flex p-2 col-6 ">
+                <input class="form-control" id="search-input" type="search" placeholder="Search" aria-label="Search"
+                    onkeyup="searchTable()">
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <table id="data-table" class="table table-hover table-striped table-bordered col-6">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Donor id</th>
+                        <th scope="col">Full name</th>
+                        <th scope="col">Phone number</th>
+                        <th scope="col">Blood type</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
 
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 </body>
 
