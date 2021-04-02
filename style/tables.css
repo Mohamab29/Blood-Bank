@@ -1,0 +1,23 @@
+.container-fluid{
+    margin-top: 8%;
+}
+
+
+.table{
+    background-color:whitesmoke;
+    animation: fadeIn;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    font-family: 'Caladea', serif i !important;
+    
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
