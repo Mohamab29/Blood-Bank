@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../style/success-modals.css">
 
     <!-- local scripts -->
+    <script src="../scripts/main.js"></script>
     <script src="../scripts/donor-page.js"></script>
     <!-- Font special for pages-->
     <link
@@ -100,10 +101,22 @@
                             </div>
                         </div>
                         <div class="row row-space">
-                            <div class="col-6">
+                            <div class="col-4">
                                 <div class="input-group">
-                                    <label class="label">Phone Number</label>
+                                    <label class="label">Phone</label>
                                     <input class="input--style-4" type="phone" id="phoneNumber">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <label class="label">Street</label>
+                                    <input class="input--style-4" type="text" id="streetInput">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <label class="label">City</label>
+                                    <input class="input--style-4" type="text" id="cityInput">
                                 </div>
                             </div>
                         </div>
@@ -125,7 +138,7 @@
                         </div>
                         <br>
                         <div class="p-t-15">
-                            <button class="btn btn--pink" onclick="addDonor(event)">Submit</button>
+                            <button class="btn btn--pink" type="button" onclick="addDonor(event)">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -146,7 +159,7 @@
                     <h4 class="modal-title w-100">Awesome!</h4>
                 </div>
                 <div class="modal-body">
-                    <p class="text-center">Your booking has been confirmed. Check your email for detials.</p>
+                    <p class="text-center" id="modal-paragraph"></p>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-success btn-block" data-dismiss="modal" onclick="clearForm()">OK</button>
