@@ -76,6 +76,7 @@ async function addDonor(event) {
             phoneNumber: phoneNumber,
             streetName: streetName,
             cityName: cityName,
+            timeStamp:currentDateAndTime(),
             bloodType: bloodType
         };
         modalParagraph.innerHTML = `${donor.fullName} has been added to the donors list with type ${donor.bloodType} blood.`;

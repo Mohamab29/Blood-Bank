@@ -1,4 +1,6 @@
-function addTableRow(rowIndex, donorId, fullName, phoneNumber, bloodType) {
+function addTableRow(rowIndex, donorId,
+    fullName, phoneNumber, streetName,
+    cityName, bloodType, timeStamp) {
     /*
     How a table row will look like for the donor data
         <tr>
@@ -6,7 +8,10 @@ function addTableRow(rowIndex, donorId, fullName, phoneNumber, bloodType) {
             <td>donorID</td>
             <td>fullName</td>
             <td>phoneNumber</td>
+            <td>street</td>
+            <td>city</td>
             <td>bloodType</td>
+            <td>time stamp</td>
         </tr>
     */
     const tr = document.createElement("tr");
@@ -18,56 +23,40 @@ function addTableRow(rowIndex, donorId, fullName, phoneNumber, bloodType) {
     const td01 = document.createElement("td");
     td01.innerHTML = donorId;
     tr.appendChild(td01);
+    
     const td02 = document.createElement("td");
     td02.innerHTML = fullName;
     tr.appendChild(td02);
+
     const td03 = document.createElement("td");
     td03.innerHTML = phoneNumber;
     tr.appendChild(td03);
+
     const td04 = document.createElement("td");
-    td04.innerHTML = bloodType;
+    td04.innerHTML = streetName;
     tr.appendChild(td04);
+
+    const td05 = document.createElement("td");
+    td05.innerHTML = cityName;
+    tr.appendChild(td05);
+
+    const td06 = document.createElement("td");
+    td06.innerHTML = bloodType;
+    tr.appendChild(td06);
+
+    const td07 = document.createElement("td");
+    td07.innerHTML = timeStamp;
+    tr.appendChild(td07);
 
     return tr;
 }
-function searchTable() {
-    // this function is called when someone uses the search bar above the table
-    // we check all the table data (aka cells) , if the string that in the input match any cell 
-    // if yes then we display it
-
-    const table = document.getElementById("data-table");
-    const tr = table.getElementsByTagName("tr");
-
-    const checkCell = (cell) => {
-        let searchInput = document.getElementById("search-input");
-        let filter = searchInput.value.toLowerCase();
-        let txtValue = cell.innerText.toLowerCase();
-        return txtValue.includes(filter);
-    };
-    let cells = {};
-    let contain = false;
-    for (let i = 1; i < tr.length; i++) {
-        cells = tr[i].getElementsByTagName("td");
-        for (const cell of cells) {
-            if (checkCell(cell)) {
-                tr[i].style.display = "";
-                contain = true;
-            }
-        }
-        if (!contain) {
-            tr[i].style.display = "none";
-        }
-        contain = false;
-    }
-}
-window.onload = async () => {
+window.onload = () => {
     //on load we build the table dynamically by using 
     // the data the json-server 
     const tbody = document.getElementById("table-body");
-    let uri = 'http://localhost:3000/donors';
 
-    const response = await fetch(uri);
-    const donorsData = await response.json();
+
+    const donorsData = getObjectFromLocalStorage("donors");
 
     let tableRow = {};
     for (let i = 0; i < donorsData.length; i++) {
@@ -75,7 +64,10 @@ window.onload = async () => {
             donorsData[i].donorID,
             donorsData[i].fullName,
             donorsData[i].phoneNumber,
-            donorsData[i].bloodType);
+            donorsData[i].streetName,
+            donorsData[i].cityName,
+            donorsData[i].bloodType,
+            donorsData[i].timeStamp);
         tbody.appendChild(tableRow);
     }
 
