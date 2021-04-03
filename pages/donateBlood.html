@@ -84,18 +84,18 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Receiving Blood</h2>
-                    <form id="donor-form">
+                    <form>
                         <div class="row row-space">
                             <div class="col-6">
                                 <div class="input-group">
                                     <label class="label">ID</label>
-                                    <input class="input--style-4" type="text" name="donorID">
+                                    <input class="input--style-4" type="text" id="donorID">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="input-group">
                                     <label class="label">Full Name</label>
-                                    <input class="input--style-4" type="text" name="fullName">
+                                    <input class="input--style-4" type="text" id="fullName">
                                 </div>
                             </div>
                         </div>
@@ -103,14 +103,14 @@
                             <div class="col-6">
                                 <div class="input-group">
                                     <label class="label">Phone Number</label>
-                                    <input class="input--style-4" type="phone" name="phoneNumber">
+                                    <input class="input--style-4" type="phone" id="phoneNumber">
                                 </div>
                             </div>
                         </div>
                         <div class="col-4 blood-type-dropdown">
                             <label class="label">Blood Type</label>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <select class="custom-select" name="bloodTypeSelect">
+                                <select class="custom-select" id="bloodTypeSelect">
                                     <option disabled="disabled" selected="selected">Choose type</option>
                                     <option>A+</option>
                                     <option>A-</option>
@@ -125,7 +125,7 @@
                         </div>
                         <br>
                         <div class="p-t-15">
-                            <button class="btn btn--pink" type="button" onclick="addDonor()">Submit</button>
+                            <button class="btn btn--pink" onclick="addDonor(event)">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -135,7 +135,7 @@
     <!-- ---------------------------------------------------------------------------------------------- -->
     <!-- /// success modal  -->
     <!-- we put it aside because it will not work while using fetch data   -->
-<!-- 
+
     <div id="success-modal" class="modal fade" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog modal-confirm">
             <div class="modal-content">
@@ -153,7 +153,7 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
 </body>
 <!-- This templates was made by Colorlib (https://colorlib.com) -->

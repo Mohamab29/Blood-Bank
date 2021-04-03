@@ -5,13 +5,14 @@ function clearForm() {
     donorForm["phoneNumber"].value = "";
     donorForm["bloodTypeSelect"].selectedIndex = 0;
 }
-function addDonor() {
+async function addDonor(event) {
+    event.preventDefault();
 
-    const donorForm = document.getElementById("donor-form");
-    const donorID = donorForm["donorID"].value;
-    const fullName = donorForm["fullName"].value;
-    const phoneNumber = donorForm["phoneNumber"].value;
-    const bloodType = donorForm["bloodTypeSelect"].value;
+    // const donorForm = document.getElementById("donor-form");
+    const donorID = document.getElementById("donorID").value;
+    const fullName = document.getElementById("fullName").value;
+    const phoneNumber = document.getElementById("phoneNumber").value;
+    const bloodType = document.getElementById("bloodTypeSelect").value;
 
     if (!donorID || !fullName || !phoneNumber || bloodType === "Choose type") {
         alert("Please enter all the fields before submitting the form");
@@ -23,22 +24,20 @@ function addDonor() {
         phoneNumber: phoneNumber,
         bloodType: bloodType
     };
-    const postDonor = async () => {
-        await fetch('http://localhost:3000/donors', {
-            method: 'POST',
-            body: JSON.stringify(donor),
-            headers: { 'Content-Type': 'application/json' },
-            keepalive: true
-        }).then(response => { return response.json() })
-            .then(data => {
-                // const dataObject = JSON.parse(data);
-                alert(`${data.fullName} has been registered as a donor with ${data.bloodType} blood .`);
-            })
-            .catch((err) => { alert("this error happened :" + err) });
-
-    };
-    postDonor();
-
-
-    // window.alert = () => $('#success-modal').modal('show');
+    const postDonor = await fetch('http://localhost:3000/donors', {
+        method: 'POST',
+        body: JSON.stringify(donor),
+        headers: { 'Content-Type': 'application/json' },
+        keepalive: true
+    }).then(response => response.json())
+        .then(json => json
+            // const dataObject = JSON.parse(data);
+            // alert(`${data.fullName} has been registered as a donor with ${data.bloodType} blood .`);
+        )
+        .catch((err) => err.message);
+    alert("Please No");
+    // postDonor.status = "200" && alert("good");
+    // postDonor.status != "200" && alert("failed");
+    // window.onbeforeunload = $('#success-modal').modal('show');
+    
 }
