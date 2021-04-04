@@ -23,7 +23,7 @@ function addTableRow(rowIndex, donorId,
     const td01 = document.createElement("td");
     td01.innerHTML = donorId;
     tr.appendChild(td01);
-    
+
     const td02 = document.createElement("td");
     td02.innerHTML = fullName;
     tr.appendChild(td02);
@@ -57,18 +57,18 @@ window.onload = () => {
 
 
     const donorsData = getObjectFromLocalStorage("donors");
-
-    let tableRow = {};
-    for (let i = 0; i < donorsData.length; i++) {
-        tableRow = addTableRow(i + 1,
-            donorsData[i].donorID,
-            donorsData[i].fullName,
-            donorsData[i].phoneNumber,
-            donorsData[i].streetName,
-            donorsData[i].cityName,
-            donorsData[i].bloodType,
-            donorsData[i].timeStamp);
-        tbody.appendChild(tableRow);
+    if (donorsData) {
+        let tableRow = {};
+        for (let i = 0; i < donorsData.length; i++) {
+            tableRow = addTableRow(i + 1,
+                donorsData[i].donorID,
+                donorsData[i].fullName,
+                donorsData[i].phoneNumber,
+                donorsData[i].streetName,
+                donorsData[i].cityName,
+                donorsData[i].bloodType,
+                donorsData[i].timeStamp);
+            tbody.appendChild(tableRow);
+        }
     }
-
 }

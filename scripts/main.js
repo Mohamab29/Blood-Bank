@@ -12,8 +12,11 @@ function saveToLocalStorage(object, key) {
 
 }
 function getObjectFromLocalStorage(key) {
+    /*
+    @key:string
+    */
     const jsonArray = localStorage.getItem(key);
-    if (!jsonArray) return;
+    if (!jsonArray) return null;
     return JSON.parse(jsonArray);
 }
 function currentDateAndTime() {
@@ -56,22 +59,49 @@ function searchTable() {
         contain = false;
     }
 }
+function updateBloodBank(bloodType, amount = 1) {
+    // incrementing the blood units with the same blood type in the blood bank
+    const bloodTypesArray = getObjectFromLocalStorage("bloodBank");
+    if (!bloodTypesArray) {
+        alert("There should a blood bank key in the local storage,check what is wrong!");
+    }
+    else {
+        const indexOfBloodType = bloodTypesArray.map((item) => item.bloodType).indexOf(bloodType);
+        if (indexOfBloodType < 0) return false;
+        const bloodTypeObject = bloodTypesArray[indexOfBloodType];
+        const newAmount = parseInt(bloodTypeObject.amount) + amount;
+        const updatedBloodType = {
+            id: bloodTypeObject.id,
+            bloodType: bloodType,
+            amount: newAmount
+        }
+        bloodTypesArray.splice(indexOfBloodType, 1);
+        bloodTypesArray.push(updatedBloodType);
+        localStorage.removeItem("bloodBank");
+        localStorage.setItem("bloodBank", JSON.stringify(bloodTypesArray));
+    }
+}
+// =====> local storage initialization 
 window.onload = () => {
     // if someone opens the project for the first time
     // we want to initialize the local storage with all the
     // blood types with amount 0.
-    const jsonArray = localStorage.getItem("bloodBank");
-    if (jsonArray === null) {
+    const bloodBank = getObjectFromLocalStorage("bloodBank");
+    const hospitalOrders = getObjectFromLocalStorage("hospitalOrders");
+    const orders = getObjectFromLocalStorage("orders");
+    if (!bloodBank && !hospitalOrders && !orders) {
         const bloodTypes = ["AB+", "AB-", "B+", "B-", "A+", "A-", "O-", "O+"]
         for (const bloodType of bloodTypes) {
             saveToLocalStorage({
                 id: createId(),
                 bloodType: bloodType,
-                amount: 0
+                amount: 10
             }, "bloodBank");
         }
-
-    } else {
+        localStorage.setItem("hospitalOrders","[]");
+        localStorage.setItem("donors","[]");
+    } 
+    else {
         return;
     }
 }

@@ -4,7 +4,7 @@ function clearForm() {
     document.getElementById("phoneNumber").value = "";
     document.getElementById("streetInput").value = "";
     document.getElementById("cityInput").value = "";
-    document.getElementById("bloodTypeSelect").value = "";
+    document.getElementById("bloodTypeSelect").value = "Choose type";
 }
 
 function isDonor(id) {
@@ -21,28 +21,7 @@ function isDonor(id) {
     }
     return false;
 }
-function updateBloodBank(bloodType, amount = 1) {
-    // incrementing the blood units with the same blood type in the blood bank
-    const bloodTypesArray = getObjectFromLocalStorage("bloodBank");
-    if (!bloodTypesArray) {
-        alert("There should a blood bank key in the local storage,check what is wrong!");
-    }
-    else {
-        const indexOfBloodType = bloodTypesArray.map((item) => item.bloodType).indexOf(bloodType);
-        if (indexOfBloodType < 0) return false;
-        const bloodTypeObject = bloodTypesArray[indexOfBloodType];
-        const newAmount = parseInt(bloodTypeObject.amount) + amount;
-        const updatedBloodType = {
-            id: bloodTypeObject.id,
-            bloodType: bloodType,
-            amount: newAmount
-        }
-        bloodTypesArray.splice(indexOfBloodType, 1);
-        bloodTypesArray.push(updatedBloodType);
-        localStorage.removeItem("bloodBank");
-        localStorage.setItem("bloodBank", JSON.stringify(bloodTypesArray));
-    }
-}
+
 async function addDonor(event) {
     event.preventDefault();
     const modalParagraph = document.getElementById("modal-paragraph");

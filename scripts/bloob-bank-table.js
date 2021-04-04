@@ -26,11 +26,13 @@ window.onload = () => {
     //on load we build the table dynamically by using 
     // the data the json-server 
     const tbody = document.getElementById("table-body");
-    const bloodTypesData = getObjectFromLocalStorage("bloodBank").sort((a, b) => b.amount - a.amount );
-    let tableRow = {};
-    for (let i = 0; i < bloodTypesData.length; i++) {
-        tableRow = addTableRow(i + 1, bloodTypesData[i].bloodType, bloodTypesData[i].amount);
-        tbody.appendChild(tableRow);
+    let bloodTypesData = getObjectFromLocalStorage("bloodBank");
+    if (bloodTypesData) {
+        bloodTypesData = bloodTypesData.sort((a, b) => b.amount - a.amount);
+        let tableRow = {};
+        for (let i = 0; i < bloodTypesData.length; i++) {
+            tableRow = addTableRow(i + 1, bloodTypesData[i].bloodType, bloodTypesData[i].amount);
+            tbody.appendChild(tableRow);
+        }
     }
-
 }

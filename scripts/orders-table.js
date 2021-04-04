@@ -1,4 +1,6 @@
-function addTableRow(rowIndex, patientID, fullName, numberOfBloodUnits, bloodType) {
+function addTableRow(rowIndex, patientID,
+    fullName, numberOfBloodUnits,
+    bloodType, timeStamp) {
     /*
     How a table row will look like for the donor data
         <tr>
@@ -7,6 +9,7 @@ function addTableRow(rowIndex, patientID, fullName, numberOfBloodUnits, bloodTyp
             <td>fullName</td>
             <td>numberOfBloodUnits</td>
             <td>bloodType</td>
+            <td>time stamp</td>
         </tr>
     */
     const tr = document.createElement("tr");
@@ -27,56 +30,29 @@ function addTableRow(rowIndex, patientID, fullName, numberOfBloodUnits, bloodTyp
     const td04 = document.createElement("td");
     td04.innerHTML = bloodType;
     tr.appendChild(td04);
+    const td05 = document.createElement("td");
+    td05.innerHTML = timeStamp;
+    tr.appendChild(td05);
 
     return tr;
 }
-function searchTable() {
-    // this function is called when someone uses the search bar above the table
-    // we check all the table data (aka cells) , if the string that in the input match any cell 
-    // if yes then we display it
 
-    const table = document.getElementById("data-table");
-    const tr = table.getElementsByTagName("tr");
-
-    const checkCell = (cell) => {
-        let searchInput = document.getElementById("search-input");
-        let filter = searchInput.value.toLowerCase();
-        let txtValue = cell.innerText.toLowerCase();
-        return txtValue.includes(filter);
-    };
-    let cells = {};
-    let contain = false;
-    for (let i = 1; i < tr.length; i++) {
-        cells = tr[i].getElementsByTagName("td");
-        for (const cell of cells) {
-            if (checkCell(cell)) {
-                tr[i].style.display = "";
-                contain = true;
-            }
-        }
-        if (!contain) {
-            tr[i].style.display = "none";
-        }
-        contain = false;
-    }
-}
 window.onload = async () => {
     //on load we build the table dynamically by using 
     // the data the json-server 
     const tbody = document.getElementById("table-body");
-    let uri = 'http://localhost:3000/hospitalOrders?_sort=numberOfBloodUnits&_order=desc';
 
-    const response = await fetch(uri);
-    const donorsData = await response.json();
-
-    let tableRow = {};
-    for (let i = 0; i < donorsData.length; i++) {
-        tableRow = addTableRow(i + 1, 
-            donorsData[i].patientID,
-            donorsData[i].fullName,
-            donorsData[i].numberOfBloodUnits,
-            donorsData[i].bloodType);
-        tbody.appendChild(tableRow);
+    const donorsData = getObjectFromLocalStorage("hospitalOrders");
+    if (donorsData) {
+        let tableRow = {};
+        for (let i = 0; i < donorsData.length; i++) {
+            tableRow = addTableRow(i + 1,
+                donorsData[i].patientID,
+                donorsData[i].fullName,
+                donorsData[i].numberOfBloodUnits,
+                donorsData[i].bloodType,
+                donorsData[i].timeStamp);
+            tbody.appendChild(tableRow);
+        }
     }
-
 }

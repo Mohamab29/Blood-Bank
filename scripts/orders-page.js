@@ -1,66 +1,108 @@
 function clearForm() {
-    const donorForm = document.getElementById("order-form");
-    donorForm["patientID"].value = "";
-    donorForm["fullName"].value = "";
-    donorForm["numberOfBloodUnits"].value = "";
-    donorForm["bloodType"].selectedIndex = 0;
+    document.getElementById("patientID").value = "";
+    document.getElementById("fullName").value = "";
+    document.getElementById("numberOfBloodUnits").value = "";
+    document.getElementById("bloodTypeSelect").value = "Choose type";
 }
-async function patchAmountsOfBloodAsync(numberOfBloodUnits, bloodType) {
-    const bloodBankURI = 'http://localhost:3000/bloodBank/' + bloodType;
+function checkOtherBloodTypes(numBUs, bloodBank, compatibleBTs) {
+    let givenBloodTypes = {
+        bloodTypes: [],
+        amount: 0
+    } // we save the blood types that gave us the adequate units
+    for (const blood of bloodBank) {
+        if (numBUs == 0) {
+            break;
+        }
+        if (compatibleBTs.includes(blood.bloodType)) {
+            if (blood.amount > 0) {
+                if (blood.amount < numBUs) {
 
-    const response = await fetch(bloodBankURI);
-    const bloodTypeObject = await response.json();
-    let updatedAmount = parseInt(bloodTypeObject.amount) - numberOfBloodUnits;
-    console.log(bloodTypeObject)
-    console.log(updatedAmount)
-    fetch(bloodBankURI, {
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(
-            {
-                amount: updatedAmount
+                    numBUs = numBUs - blood.amount;
+                    updateBloodBank(blood.bloodType, -blood.amount);
+                    givenBloodTypes.bloodTypes.push(blood.bloodType);
+                    givenBloodTypes.amount += blood.amount;
+                } else if (blood.amount >= numBUs) {
+
+                    updateBloodBank(blood.bloodType, -numBUs);
+                    givenBloodTypes.bloodTypes.push(blood.bloodType);
+                    givenBloodTypes.amount += numBUs;
+                    break;
+                }
             }
-        )
-    }).then(response => response.json())
-        .then(data => {
-            return data;
-        })
-        .catch(err => alert("This error happened:" + err));
+        }
+    }
+    return givenBloodTypes;
+}
+function checkBloodTypeAvailability(bloodType, numBUs) {
+    const compatibleBTs = {
+        "A+": ["A+", "A-", "O+", "O-"],
+        "O+": ["O+", "O-"],
+        "B+": ["B+", "B-", "O+", "O-"],
+        "AB+": ["A+", "A-", "O+", "O-", "B+", "B-", "AB+", "AB-"],
+        "A-": ["A-", "O-"],
+        "O-": ["O-"],
+        "B-": ["B-", "O-"],
+        "AB-": ["AB-", "A-", "B-", "O-"]
+    }
+    const bloodBank = getObjectFromLocalStorage("bloodBank");
+    let givenBloodTypes = {
+        bloodTypes: [],
+        amount: 0
+    };
+    for (const blood of bloodBank) {
+        if (blood.bloodType === bloodType) {
+            //first we check if the amount is enough
+            if (blood.amount >= numBUs) {
+                updateBloodBank(bloodType, -numBUs);
+                givenBloodTypes.bloodTypes.push(blood.bloodType);
+                givenBloodTypes.amount += numBUs;
+            } else if (blood.amount < numBUs) {
+                givenBloodTypes = checkOtherBloodTypes(numBUs, bloodBank, compatibleBTs[bloodType]);
+            }
+        }
+    }
+    return givenBloodTypes;
 }
 function addOrder() {
-    const orderForm = document.getElementById("order-form");
-    const patientID = orderForm["patientID"].value;
-    const fullName = orderForm["fullName"].value;
-    const numberOfBloodUnits = orderForm["numberOfBloodUnits"].value;
-    const bloodType = orderForm["bloodTypeSelect"].value;
-
+    const modalParagraph = document.getElementById("modal-paragraph");
+    const patientID = document.getElementById("patientID").value;
+    const fullName = document.getElementById("fullName").value;
+    const numberOfBloodUnits = parseInt(document.getElementById("numberOfBloodUnits").value);
+    const bloodType = document.getElementById("bloodTypeSelect").value;
+    if (numberOfBloodUnits <= 0) {
+        alert("Please enter a valid number of requested blood units");
+        return;
+    }
     if (!patientID || !fullName || !numberOfBloodUnits || bloodType === "Choose type") {
         alert("Please enter all the fields before submitting the form");
         return;
     }
+    const givenBloodTypes = checkBloodTypeAvailability(bloodType, numberOfBloodUnits);
+    if (givenBloodTypes.bloodTypes.length === 0) {
+        const answer = confirm("Sadly , there is not enough blood units from the same type or other compatible types.\nwould you like to be redirected to the donors table?");
+        if (answer) {
+            window.location.href = '../pages/viewDonors.html';
+        }
+        return;
+    }
+    const bloodTypes = givenBloodTypes.bloodTypes;
+    let bloodTypesString = '';
+    for (let i = 0; i < bloodTypes.length; i++) {
+        if (i === bloodTypes.length - 1) {
+            bloodTypesString += bloodTypes[i]
+        } else {
+            bloodTypesString += bloodTypes[i] + ",";
+        }
+
+    }
     const order = {
         patientID: patientID,
         fullName: fullName,
-        numberOfBloodUnits: numberOfBloodUnits,
-        bloodType: bloodType
+        numberOfBloodUnits: givenBloodTypes.amount,
+        bloodType: bloodTypesString,
+        timeStamp: currentDateAndTime()
     };
-    patchAmountsOfBloodAsync(numberOfBloodUnits,bloodType);
-    const postDonor = async () => {
-        await fetch('http://localhost:3000/hospitalOrders', {
-            method: 'POST',
-            body: JSON.stringify(order),
-            headers: { 'Content-Type': 'application/json' },
-            keepalive: true
-        }).then(response => { return response.json() })
-            .then(data => {
-                // const dataObject = JSON.parse(data);
-                alert(`${data.fullName} will receive ${data.numberOfBloodUnits} units of blood of type ${data.bloodType} blood.`);
-            })
-            .catch((err) => { alert("this error happened :" + err) });
-
-    };
-    postDonor();
-    return false;
+    modalParagraph.innerHTML = `${fullName} will receive the following blood type/s: ${bloodTypesString}.<br>this amount: ${givenBloodTypes.amount}.<br>the order has been added to orders table.`
+    saveToLocalStorage(order, "hospitalOrders");
+    $('#success-modal').modal('show');
 }

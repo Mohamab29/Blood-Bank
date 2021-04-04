@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../style/success-modals.css">
 
     <!-- local scripts -->
+    <script src="../scripts/main.js"></script>
     <script src="../scripts/orders-page.js"></script>
 
     <!-- Font special for pages-->
@@ -78,19 +79,19 @@
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <h2 class="title">Hospital Use Blood Order</h2>
+                    <h2 class="title">Blood Units order for hospital use</h2>
                     <form id="order-form">
                         <div class="row row-space">
                             <div class="col-6">
                                 <div class="input-group">
                                     <label class="label">Patient ID</label>
-                                    <input class="input--style-4" type="text" name="patientID">
+                                    <input class="input--style-4" type="text" id="patientID">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="input-group">
                                     <label class="label">Full Name</label>
-                                    <input class="input--style-4" type="text" name="fullName">
+                                    <input class="input--style-4" type="text" id="fullName">
                                 </div>
                             </div>
                         </div>
@@ -98,14 +99,14 @@
                             <div class="col-6">
                                 <div class="input-group">
                                     <label class="label">Number of blood units</label>
-                                    <input class="input--style-4" type="text" name="numberOfBloodUnits">
+                                    <input class="input--style-4" type="text" id="numberOfBloodUnits">
                                 </div>
                             </div>
                         </div>
                         <div class="col-4 blood-type-dropdown">
                             <label class="label">Blood Type</label>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <select class="custom-select" name="bloodTypeSelect">
+                                <select class="custom-select" id="bloodTypeSelect">
                                     <option disabled="disabled" selected="selected">Choose type</option>
                                     <option>A+</option>
                                     <option>A-</option>
@@ -127,7 +128,25 @@
             </div>
         </div>
     </div>
-
+    <!-- ---------------------------------------------------------------------------------------------- -->
+    <div id="success-modal" class="modal fade" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="icon-box">
+                        <i class="far fa-check-circle"></i>
+                    </div>
+                    <h4 class="modal-title w-100">Awesome!</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center" id="modal-paragraph"></p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success btn-block" data-dismiss="modal" onclick="clearForm()">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 
