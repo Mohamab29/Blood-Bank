@@ -38,7 +38,7 @@ function checkBloodTypeAvailability(bloodType, numBUs) {
         "A+": ["A+", "A-", "O+", "O-"],
         "O+": ["O+", "O-"],
         "B+": ["B+", "B-", "O+", "O-"],
-        "AB+": ["A+", "A-", "O+", "O-", "B+", "B-", "AB+", "AB-"],
+        "AB+": ["AB+", "AB-", "A+", "A-", "B+", "B-", "O+", "O-"],
         "A-": ["A-", "O-"],
         "O-": ["O-"],
         "B-": ["B-", "O-"],
@@ -96,7 +96,7 @@ function addOrder() {
 
     }
     const order = {
-        id:createId(),
+        id: createId(),
         patientID: patientID,
         fullName: fullName,
         numberOfBloodUnits: givenBloodTypes.amount,
