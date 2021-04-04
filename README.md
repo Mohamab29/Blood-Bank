@@ -30,7 +30,7 @@
 	🚧  Blood Bank 🚀 Under construction...  🚧
 </h4> 
 
-* "solar" ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/solar.png)
+
 
 <p align="center">
   <a href="#dart-about">About</a> &#xa0; | &#xa0; 
