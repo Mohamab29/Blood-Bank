@@ -24,14 +24,12 @@
   <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/Mohamab29/blood-bank?color=56BEB8" /> -->
 </p>
 
-<!-- Status -->
+<hr>
+<div align="center">
 
-<!-- <h4 align="center"> 
-	🚧  Blood Bank 🚀 Under construction...  🚧
-</h4> 
+![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/solar.png)
 
-<hr> -->
-
+</div>
 <p align="center">
   <a href="#dart-about">About</a> &#xa0; | &#xa0; 
   <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
