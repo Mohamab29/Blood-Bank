@@ -60,6 +60,8 @@ The following tools were used in this project:
 - [Bootstrap 4](https://getbootstrap.com/)
 - [JavaScript](https://www.javascript.com/)
 
+We used local storage to store the data.
+
 ## :white_check_mark: Requirements ##
 
 Before starting :checkered_flag:, you need to have [Git](https://git-scm.com),[VS Code](https://code.visualstudio.com/) installed and [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extension.
