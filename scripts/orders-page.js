@@ -79,7 +79,7 @@ function addOrder() {
     }
     const givenBloodTypes = checkBloodTypeAvailability(bloodType, numberOfBloodUnits);
     if (givenBloodTypes.bloodTypes.length === 0) {
-        const answer = confirm("Sadly , there is not enough blood units from the same type or other compatible types.\nwould you like to be redirected to the donors table?");
+        const answer = confirm("Sadly, there is not enough blood units from the same type or other compatible types.\nwould you like to be redirected to the donors table?");
         if (answer) {
             window.location.href = '../pages/viewDonors.html';
         }
@@ -96,6 +96,7 @@ function addOrder() {
 
     }
     const order = {
+        id:createId(),
         patientID: patientID,
         fullName: fullName,
         numberOfBloodUnits: givenBloodTypes.amount,

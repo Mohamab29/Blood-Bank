@@ -12,6 +12,10 @@
     <!-- local link -->
     <link href="../style/styles.css" rel="stylesheet" media="all">
     <link rel="icon" href="../assets/images/blood-drop.svg">
+    <!-- local scripts -->
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/orders-page.js"></script>
+    <script src="../scripts/MCI-page.js"></script>
 
     <!-- Font special for pages-->
     <link
@@ -74,25 +78,23 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Multiple casualty incident</h2>
-                    <form>
                         <div class="row row-space">
                             <div class="col-6">
                                 <div class="input-group">
                                     <label class="label">Ambulance ID</label>
-                                    <input class="input--style-4" type="text" name="first_name">
+                                    <input class="input--style-4" type="text" id="ambulanceID">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="input-group">
-                                    <label class="label">Number of casualties</label>
-                                    <input class="input--style-4" type="text" name="last_name">
+                                    <label class="label">Number of blood units</label>
+                                    <input class="input--style-4" type="text" id="numberOfBloodUnits">
                                 </div>
                             </div>
                         </div>
                         <div class="p-t-15">
-                            <button class="btn btn--pink" type="button" onclick="AddVolnteer()">Submit</button>
+                            <button class="btn btn--pink" type="button" onclick="requestBloodUnits()">Submit</button>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>

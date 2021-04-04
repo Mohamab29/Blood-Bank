@@ -95,7 +95,7 @@ window.onload = () => {
             saveToLocalStorage({
                 id: createId(),
                 bloodType: bloodType,
-                amount: 10
+                amount: 100
             }, "bloodBank");
         }
         localStorage.setItem("hospitalOrders","[]");
