@@ -80,6 +80,10 @@ after doing all the installations, follow this gif on how to open the index.html
 
 ## :checkered_flag: Starting ##
 
+You can visit our github page by clicking the welcoming image at the <a href="#top">top.</a>
+
+And for running the code:
+
 ```bash
 # Clone this project
 $ git clone https://github.com/Mohamab29/blood-bank
