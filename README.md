@@ -1,6 +1,7 @@
-<div align="center" id="top"> 
-  <img src="https://github.com/Mohamab29/Blood-Bank/blob/main/assets/images/home-page.png" alt="Home page"/>
-
+<div align="center" id="top">
+  <a href="https://mohamab29.github.io/Blood-Bank/index.html" rel="Website homepage">
+    <img src="https://github.com/Mohamab29/Blood-Bank/blob/main/assets/images/home-page.png" alt="Home page"/>
+  </a>
   &#xa0;
 
 </div>
